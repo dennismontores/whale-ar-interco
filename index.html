@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>&lt;ar-button&gt;</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css" />
+  <link rel="stylesheet" href="https://unpkg.com/@leoncvlt/ar-button/styles.css" />
+  <style>
+    td:first-child {
+      width: 33%;
+      font-family: monospace;
+    }
+
+    .demo {
+      position: relative;
+    }
+
+    .demo>ar-button {
+      position: absolute;
+      right: 2rem;
+      bottom: 2rem;
+    }
+
+    .demo>img {
+      border-radius: 0.5rem;
+    }
+
+    ar-button:not([ar="unsupported"]) .unsupported {
+      display: none;
+    }
+
+    ar-button[ar="unsupported"] {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    ar-button[ar="unsupported"] .prompt {
+      display: none;
+    }
+
+    body {
+      margin-bottom: 10rem;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h2>Whale Demo</h2>
+  <hr />
+  <p>
+    Navigate to this page on a supported mobile device and click the "See in Augmented Reality"
+    button on the bottom right of the image to see a friendly, whale
+  </p>
+  <div class="demo">
+    <img src="https://source.unsplash.com/lwACYK8ScmA/960x540" />
+    <ar-button id="ar-button" src="./assets/whale_test3.glb" ios-src="./assets/whale_test3.usdz"
+      link="https://www.interco.ai/" title="A 3D model of an astronaut"
+      checkout-title="A 3D model of a whale"
+      checkout-subtitle="Doesn't feel like a giant. Probably feels very" price="very small."
+      call-to-action="Enjoy this whale" show-if-unsupported>
+      <span class="prompt">See in <b>Augmented Reality</b></span>
+      <span class="unsupported">Your device does not support AR</span>
+    </ar-button>
+  </div>
+
+  <script type="module" src="https://unpkg.com/@leoncvlt/ar-button"></script>
+  <script>
+    const arButton = document.querySelector("ar-button");
+    arButton.addEventListener("quick-look-button-tapped", () => {
+      window.location.href = "https://www.interco.ai/";
+    });
+  </script>
+
+
+</body>
+
+</html>
