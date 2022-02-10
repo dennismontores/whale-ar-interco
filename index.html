@@ -44,6 +44,10 @@
       margin-bottom: 10rem;
     }
   </style>
+
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.js"></script>
+  <script nomodule src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js">
+  </script>
 </head>
 
 <body>
@@ -65,6 +69,10 @@
       <span class="unsupported">Your device does not support AR</span>
     </ar-button>
   </div>
+  <h2>Using model viewer</h2>
+  <model-viewer ar src="./assets/whale-all-test3/scene.gltf" ios-src="./assets/whale.usdz"
+    alt="this is a 3d model">
+  </model-viewer>
 
   <script type="module" src="https://unpkg.com/@leoncvlt/ar-button"></script>
   <script>
