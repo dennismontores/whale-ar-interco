@@ -35,3 +35,7 @@ section.main {
 .banner .logos .logo-opensea {
     height: 40px;
 }
+
+.footer {
+  text-align: right;
+}
