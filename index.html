@@ -1,116 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>&lt;ar-button&gt;</title>
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css"
+        />
+        <link
+            rel="stylesheet"
+            href="https://unpkg.com/@leoncvlt/ar-button/styles.css"
+        />
+        <style>
+            td:first-child {
+                width: 33%;
+                font-family: monospace;
+            }
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>&lt;ar-button&gt;</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css" />
-  <link rel="stylesheet" href="https://unpkg.com/@leoncvlt/ar-button/styles.css" />
-  <style>
-    td:first-child {
-      width: 33%;
-      font-family: monospace;
-    }
+            .demo {
+                position: relative;
+            }
 
-    .demo {
-      position: relative;
-    }
+            .demo > ar-button {
+                position: absolute;
+                right: 2rem;
+                bottom: 2rem;
+            }
 
-    .demo>ar-button {
-      position: absolute;
-      right: 2rem;
-      bottom: 2rem;
-    }
+            /*  https://raw.githubusercontent.com/dennismontores/whale-ar-interco/assets/whale_test3.glb */
+            .demo > img {
+                border-radius: 0.5rem;
+            }
 
-    /*  https://raw.githubusercontent.com/dennismontores/whale-ar-interco/assets/whale_test3.glb */
-    .demo>img {
-      border-radius: 0.5rem;
-    }
+            ar-button:not([ar='unsupported']) .unsupported {
+                display: none;
+            }
 
-    ar-button:not([ar="unsupported"]) .unsupported {
-      display: none;
-    }
+            ar-button[ar='unsupported'] {
+                opacity: 0.5;
+                pointer-events: none;
+            }
 
-    ar-button[ar="unsupported"] {
-      opacity: 0.5;
-      pointer-events: none;
-    }
+            ar-button[ar='unsupported'] .prompt {
+                display: none;
+            }
 
-    ar-button[ar="unsupported"] .prompt {
-      display: none;
-    }
+            body {
+                margin-bottom: 10rem;
+            }
+        </style>
+        <link rel="stylesheet" href="./styles/index.css" />
+        <script
+            type="module"
+            src="https://unpkg.com/@google/model-viewer/dist/model-viewer.js"
+        ></script>
+        <script
+            nomodule
+            src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"
+        ></script>
+    </head>
 
-    body {
-      margin-bottom: 10rem;
-    }
-  </style>
+    <body>
+        <section class="main">
+            <div class="banner">
+                <h2 class="title">Whale Demo</h2>
+                <div class="logos">
+                    <a
+                        href="https://www.interco.ai/"
+                        title="Go to Interco Website"
+                    >
+                        <img
+                            class="logo-interco"
+                            src="./assets/logo_interco.svg"
+                            alt="Logo interco"
+                        />
+                    </a>
+                    <a href="https://opensea.io/" title="See in OpenSea">
+                        <img
+                            class="logo-opensea"
+                            src="https://opensea.io/static/images/logos/opensea.svg"
+                            alt="Logo OpenSea"
+                        />
+                    </a>
+                </div>
+            </div>
+            <hr />
+            <p>
+                Navigate to this page on a supported mobile device and click the
+                "See in Augmented Reality" button on the bottom right of the
+                image to see a friendly, whale
+            </p>
+            <div class="demo">
+                <img src="https://source.unsplash.com/lwACYK8ScmA/960x540" />
+                <ar-button
+                    id="ar-button"
+                    src="https://raw.githubusercontent.com/dennismontores/whale-ar-interco/master/assets/whale_test3.glb"
+                    ios-src="./assets/whale.usdz"
+                    link="https://www.interco.ai/"
+                    title="A 3D model of a whale"
+                    checkout-title="A 3D model of a whale"
+                    checkout-subtitle="Doesn't feel like a giant. Probably feels very"
+                    price="very small."
+                    call-to-action="Enjoy this whale"
+                    show-if-unsupported
+                >
+                    <span class="prompt">See in <b>Augmented Reality</b></span>
+                    <span class="unsupported"
+                        >Your device does not support AR</span
+                    >
+                </ar-button>
+            </div>
+        </section>
 
-  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.js"></script>
-  <script nomodule src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js">
-  </script>
-</head>
+        <script type="module" src="./index.js"></script>
+        <script>
+            // Reference to an output container, use 'pre' styling for JSON output
+            var output = document.createElement('pre');
+            document.body.appendChild(output);
 
-<body>
+            // Reference to native method(s)
+            var oldLog = console.log;
 
-  <h2>Whale Demo</h2>
-  <hr />
-  <p>
-    Navigate to this page on a supported mobile device and click the "See in Augmented Reality"
-    button on the bottom right of the image to see a friendly, whale
-  </p>
-  <div class="demo">
-    <img src="https://source.unsplash.com/lwACYK8ScmA/960x540" />
-    <ar-button id="ar-button"
-      src="https://raw.githubusercontent.com/dennismontores/whale-ar-interco/master/assets/whale_test3.glb"
-      ios-src="./assets/whale.usdz" link="https://www.interco.ai/" title="A 3D model of a whale"
-      checkout-title="A 3D model of a whale"
-      checkout-subtitle="Doesn't feel like a giant. Probably feels very" price="very small."
-      call-to-action="Enjoy this whale" show-if-unsupported>
-      <span class="prompt">See in <b>Augmented Reality</b></span>
-      <span class="unsupported">Your device does not support AR</span>
-    </ar-button>
-  </div>
-  <script type="module" src="./index.js"></script>
-  <script>
-    // Reference to an output container, use 'pre' styling for JSON output
-    var output = document.createElement('pre');
-    document.body.appendChild(output);
+            console.log = function (...items) {
+                // Call native method first
+                oldLog.apply(this, items);
 
-    // Reference to native method(s)
-    var oldLog = console.log;
+                // Use JSON to transform objects, all others display normally
+                items.forEach((item, i) => {
+                    items[i] =
+                        typeof item === 'object'
+                            ? JSON.stringify(item, null, 4)
+                            : item;
+                });
+                output.innerHTML += items.join(' ') + '<br />';
+            };
 
-    console.log = function (...items) {
+            // You could even allow Javascript input...
+            function consoleInput(data) {
+                // Print it to console as typed
+                console.log(data + '<br />');
+                try {
+                    console.log(eval(data));
+                } catch (e) {
+                    console.log(e.stack);
+                }
+            }
 
-      // Call native method first
-      oldLog.apply(this, items);
-
-      // Use JSON to transform objects, all others display normally
-      items.forEach((item, i) => {
-        items[i] = (typeof item === 'object' ? JSON.stringify(item, null, 4) : item);
-      });
-      output.innerHTML += items.join(' ') + '<br />';
-
-    };
-
-    // You could even allow Javascript input...
-    function consoleInput(data) {
-      // Print it to console as typed
-      console.log(data + '<br />');
-      try {
-        console.log(eval(data));
-      } catch (e) {
-        console.log(e.stack);
-      }
-    }
-
-    const arButton = document.querySelector("ar-button");
-    arButton.addEventListener("quick-look-button-tapped", () => {
-      window.location.href = "https://www.interco.ai/";
-    });
-  </script>
-
-
-</body>
-
+            const arButton = document.querySelector('ar-button');
+            arButton.addEventListener('quick-look-button-tapped', () => {
+                window.location.href = 'https://www.interco.ai/';
+            });
+        </script>
+    </body>
 </html>
