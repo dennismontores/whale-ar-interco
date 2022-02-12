@@ -146,7 +146,6 @@ const initializeArButton = (button) => {
                 )};`;
             }
             href += `end;`;
-
             activateAR(href);
         });
     } else {

@@ -23,6 +23,7 @@
       bottom: 2rem;
     }
 
+    /*  https://raw.githubusercontent.com/dennismontores/whale-ar-interco/assets/whale_test3.glb */
     .demo>img {
       border-radius: 0.5rem;
     }
@@ -61,7 +62,7 @@
   <div class="demo">
     <img src="https://source.unsplash.com/lwACYK8ScmA/960x540" />
     <ar-button id="ar-button"
-      src="https://github.com/dennismontores/whale-ar-interco/blob/master/assets/whale_test3.glb"
+      src="https://raw.githubusercontent.com/dennismontores/whale-ar-interco/master/assets/whale_test3.glb"
       ios-src="./assets/whale.usdz" link="https://www.interco.ai/" title="A 3D model of a whale"
       checkout-title="A 3D model of a whale"
       checkout-subtitle="Doesn't feel like a giant. Probably feels very" price="very small."
@@ -75,9 +76,42 @@
     src="./assets/whale-all-test3/scene.gltf" ios-src="./assets/whale.usdz"
     alt="this is a 3d model">
   </model-viewer>
+  <a
+    href="intent://arvr.google.com/scene-viewer/1.0?file=https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Avocado/glTF/Avocado.gltf&mode=ar_only#Intent;scheme=https;package=com.google.ar.core;action=android.intent.action.VIEW;S.browser_fallback_url=https://developers.google.com/ar;end;">Avocado</a>;
 
-  <script type="module" src="https://unpkg.com/@leoncvlt/ar-button"></script>
+  <script type="module" src="./index.js"></script>
   <script>
+    // Reference to an output container, use 'pre' styling for JSON output
+    var output = document.createElement('pre');
+    document.body.appendChild(output);
+
+    // Reference to native method(s)
+    var oldLog = console.log;
+
+    console.log = function (...items) {
+
+      // Call native method first
+      oldLog.apply(this, items);
+
+      // Use JSON to transform objects, all others display normally
+      items.forEach((item, i) => {
+        items[i] = (typeof item === 'object' ? JSON.stringify(item, null, 4) : item);
+      });
+      output.innerHTML += items.join(' ') + '<br />';
+
+    };
+
+    // You could even allow Javascript input...
+    function consoleInput(data) {
+      // Print it to console as typed
+      console.log(data + '<br />');
+      try {
+        console.log(eval(data));
+      } catch (e) {
+        console.log(e.stack);
+      }
+    }
+
     const arButton = document.querySelector("ar-button");
     arButton.addEventListener("quick-look-button-tapped", () => {
       window.location.href = "https://www.interco.ai/";
