@@ -36,6 +36,10 @@ section.main {
     height: 40px;
 }
 
+.note {
+    font-size:0.8rem;
+}
+
 .footer {
   text-align: right;
 }
